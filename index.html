@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>My YouTube playlist</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet/less" type="text/css" href="less/main.less" />
+        
+        <!--script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script-->
+        <script type="text/javascript" src="js/angular.min.js"></script>
+    </head>
+    <body>
+        <div ng-app="myYoutubeListApp" class="container">
+            <h1>My YouTube playlist</h1>
+            <div id="itemsListWrap" ng-controller="itemsListCtrl" ng-show="showList">
+                <div ng-repeat="video in videoItems">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="#" class="thumbnail" ng-click="showSingleVideo($event);" data-index="{{key}}">
+                                <img src="{{video.img}}" class="img-responsive" alt="{{video.title}}" />
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="caption">
+                                        <h3>
+                                            <a href="#" ng-click="showSingleVideo($event);" data-index="{{video.id}}">
+                                                {{video.title}}
+                                            </a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="hidden-xs col-md-12">
+                                    <p>{{video.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div id="pagesWrap" ng-controller="pagesCtrl" ng-show="showPages">
+                <nav>
+                    <ul class="pagination">
+                      <li class="" ng-repeat="page in pagesCount"><a href="#" ng-click="toPage($event);" data-page="{{page}}">{{page}}</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="itemSingleWrap" ng-controller="itemSingleCtrl" ng-show="showSingle">
+                <a href="#" ng-click="toList();"><  Back to list of videos</a>
+                <h1>{{videoSingle.title}}</h1>
+                <p>Published on {{publishTime}} </p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="thumbnail" ng-bind-html="videoURLiFrame"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <p>{{videoSingle.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        
+        <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/less.min.js"></script>
+        <script type="text/javascript" src="js/config.js"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+    </body>
+</html>
